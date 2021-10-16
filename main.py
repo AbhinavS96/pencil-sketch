@@ -10,7 +10,7 @@
 #cv2.imwrite("images/sketch.jpg", image_out[0])
 #cv2.imwrite("images/sketch-color.jpg", image_out[1])
 
-from flask import Flask
+from flask import Flask, url_for
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
@@ -18,12 +18,15 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+localhost = '127.0.0.2'
+my_port = '5000'
 
-@app.route('/')
+
+@app.route('/image')
 @cross_origin()
-def hello():
-    return {'key': 'hello'}
+def host():
+    return {'path': url_for('static', filename='image.jpg')}
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host=localhost, port=my_port, debug=True)
