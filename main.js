@@ -1,7 +1,10 @@
-async function hello() {
-	let response = await fetch('http://127.0.0.1:5000/');
+var BASE = 'http://127.0.0.2:5000';
+
+async function start() {
+	let response = await fetch(BASE + '/colorpencilsketch');
 	let result = await response.json();
-	console.log(result.key);
+	console.log(result);
+	document.querySelector('#main').src = BASE + result.path;
 }
 
-hello();
+start();
