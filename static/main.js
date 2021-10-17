@@ -1,9 +1,7 @@
-var BASE = 'http://127.0.0.2:5000';
-
 async function start() {
-	let response = await fetch(BASE + '/colorpencilsketch');
+	let response = await fetch('/colorpencilsketch');
 	let result = await response.json();
-	document.querySelector('#main').src = BASE + result.path;
+	document.querySelector('#main').src = result.path;
 }
 
 start();
@@ -11,12 +9,12 @@ start();
 async function uploadFile() {
 	let formData = new FormData();
 	formData.append("file", fileupload.files[0]);
-	let response = await fetch(BASE + '/pencilsketch', {
+	let response = await fetch('/pencilsketch', {
 		method: "POST",
 		body: formData
 	});
 	console.log(response);
 	let result = await response.json();
 	console.log(result);
-	document.querySelector('#main').src = BASE + result.path;
+	document.querySelector('#main').src = result.path;
 }

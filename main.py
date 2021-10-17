@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request, jsonify
+from flask import Flask, url_for, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
 import cv2
 
@@ -54,6 +54,10 @@ def colorpencil():
 
     return {'path': url_for('static', filename='color_pencil_sketch.jpg')}
 
+@app.route('/')
+@cross_origin()
+def home():
+    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(host=localhost, port=my_port, debug=True)
