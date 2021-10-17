@@ -1,15 +1,12 @@
-async function start() {
-	let response = await fetch('/colorpencilsketch');
-	let result = await response.json();
-	document.querySelector('#main').src = result.path;
-}
-
-start();
-
 async function uploadFile() {
 	let formData = new FormData();
 	formData.append("file", fileupload.files[0]);
-	let response = await fetch('/pencilsketch', {
+	let method = "";
+	if (document.querySelector('#pencil-sketch').checked)
+		method = "/pencilsketch";
+	else if (document.querySelector('#color-sketch').checked)
+		method = "/colorpencilsketch"
+	let response = await fetch(method, {
 		method: "POST",
 		body: formData
 	});

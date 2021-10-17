@@ -4,8 +4,10 @@ import cv2
 
 app = Flask(__name__)
 
-cors = CORS(app)
-cors = CORS(app, resources={"/pencilsketch": {"origins": "*"}})
+#cors = CORS(app)
+cors = CORS(app, resources={
+    "/pencilsketch": {"origins": "*"},
+    "/colorpencilsketch": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 #setting custom values for sanity
@@ -37,11 +39,15 @@ def pencil():
 
 
 #color pencil sketch API
-@app.route('/colorpencilsketch')
-@cross_origin()
+@app.route('/colorpencilsketch', methods = ['POST'])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def colorpencil():
-    #read the image. Currently using a local file. Will have to receive this from frontend
-    image = cv2.imread("static/image.jpg")
+    #save the posted file 
+    f = request.files['file']  
+    f.save("static/"+f.filename) 
+
+    #read the image received from frontend
+    image = cv2.imread("static/"+f.filename)
 
     # creating the pencil sketch directly
     image_out = cv2.pencilSketch(image,
