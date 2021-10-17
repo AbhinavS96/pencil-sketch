@@ -11,7 +11,7 @@
   <title>Sketch Effect</title>
 </head>
 
-<body>
+<body class="bg-light">
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -20,22 +20,43 @@
       </a>
     </div>
   </nav>
-  <h1>upload testing</h1>
-  <div class="form-check form-check-inline">
-    <input type="radio" name="sketch" id="pencil-sketch" class="form-check-input" checked>
-    <label for="pencil-sketch" class="form-check-label">Pencil Sketch</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input type="radio" name="sketch" id="color-sketch" class="form-check-input">
-    <label for="color-sketch" class="form-check-label">Color Sketch</label>
-  </div>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-1">
+      </div>
+      <div class="col-10 text-center">
+        <h1>Upload your image</h1>
+        <div class="d-inline-flex flex-column align-items-center">
+          <!-- file upload -->
+          <input id="fileupload" type="file" name="fileupload" />
+          <div>
+            <!-- radio button 1 -->
+            <div class="form-check form-check-inline">
+              <input type="radio" name="sketch" id="pencil-sketch" class="form-check-input" checked>
+              <label for="pencil-sketch" class="form-check-label">Pencil Sketch</label>
+            </div>
+            <!-- radio button 2 -->
+            <div class="form-check form-check-inline">
+              <input type="radio" name="sketch" id="color-sketch" class="form-check-input">
+              <label for="color-sketch" class="form-check-label">Color Sketch</label>
+            </div>
+          </div>
+          <button id="upload-button" onclick="uploadFile()" class="btn btn-primary"> Upload </button>
+        </div>
+        <h2>View Result</h2>
+      </div>
+      <div class="col-1">
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-1"></div>
+      <div class="col-10 text-center border">
+        <img class="image" id="main"></img>
+      </div>
+      <div class="col-1"></div>
+    </div>
 
-  <div>
-    <input id="fileupload" type="file" name="fileupload" />
-    <button id="upload-button" onclick="uploadFile()" class="btn btn-primary"> Upload </button>
   </div>
-  <h1>main image testing</h1>
-  <img id="main"></img>
 </body>
 
 </html>
